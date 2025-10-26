@@ -1,0 +1,41 @@
+{
+  "latex-workshop.latex.autoBuild.run": "onSave",
+  "latex-workshop.latex.recipes": [
+    {
+      "name": "platex ➞ pbibtex ➞ platex × 2 ➞ dvipdfmx",
+      "tools": [
+        "platex",
+        "pbibtex",
+        "platex",
+        "platex",
+        "dvipdfmx"
+      ]
+    }
+  ],
+  "latex-workshop.latex.tools": [
+    {
+      "name": "platex",
+      "command": "platex",
+      "args": [
+        "-interaction=nonstopmode",
+        "-file-line-error",
+        "%DOC%"
+      ]
+    },
+    {
+      "name": "pbibtex",
+      "command": "pbibtex",
+      "args": [
+        "%DOCFILE%"
+      ]
+    },
+    {
+      "name": "dvipdfmx",
+      "command": "dvipdfmx",
+      "args": [
+        "%DOCFILE%.dvi"
+      ]
+    }
+  ],
+  "latex-workshop.view.pdf.viewer": "tab"
+}
