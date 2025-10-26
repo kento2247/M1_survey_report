@@ -1,0 +1,53 @@
+\section{Related Work}
+Vision-language models (VLMs) have been extensively studied for robotics~\cite{brohan2023saycan, brohan2022rt} as comprehensively reviewed in \cite{XIAO2025129963, Ma2024ASO}.
+Diverse multimodal retrieval methods are summarized in \cite{Cao+ijcal22, wang2024crossmodalretrievalsystematicreview}.
+Furthermore, the integration of scene text has proven remarkably effective in disambiguating visual representations, as documented in \cite{Long2018SceneTD, Gupta2022}.
+
+\paragraph{Foundation Models for Robotics.}
+Recent studies have shown that remarkable generalization across manipulation and navigation tasks can be achieved by leveraging large-scale foundation models, such as large language models (LLMs) and VLMs~\cite{brohan2023saycan, Driess2023PaLMEAE, brohan2022rt}. 
+Vision-language-action models~\cite{brohan2022rt,Black2025pi05,wen2025dexvla,team2025gemini,li2025controlvla} trained on large-scale real robot trajectories enable scalable policy learning across diverse manipulation tasks.
+For example, Gemini-Robotics \cite{team2025gemini} integrates advanced visual understanding with robotic capabilities for complex household tasks. 
+However, these approaches do not explicitly incorporate scene text, limiting their multimodal understanding in scenes where textual information provides critical semantic grounding.
+
+\paragraph{RAG for Robotics.}
+Several existing methods~\cite{xie2025embodiedrag, zhu2024raea, xu2024prag, monaci2025rana, wang2025rag6dpose} have applied RAG to embodied agents for enhanced grounding and planning.
+Other approaches~\cite{wang2025navrag, fan2024bevinstructor} use RAG to generate navigation instructions, thereby improving vision-language navigation models.
+RAG-based memory has also been proposed for long-horizon reasoning~\cite{anwar2025remembr}, while others use it to retrieve and fuse demonstrations for imitation policy learning~\cite{kumar2025collage}.
+Despite these advances, prior work has not leveraged scene text as a retrieval signal, which is essential for disambiguating visually similar objects in everyday environments.
+
+
+\paragraph{Multimodal retrieval.}
+Numerous studies \cite{Yenamandra2023HomeRobotOM, robocup} have assessed the performance of domestic service robots in mobile manipulation tasks based on natural language instructions.	 
+Several existing methods \cite{nlmap, Sigurdsson2023RRExBoTRR, dm2rm, relaxformer} perform multimodal retrieval to identify target objects in the environment, and output ranked lists of relevant images based on natural language instructions.
+There are also methods which conduct multimodal retrieval to find target objects, and output text-based answers or waypoints~\cite{xie2025embodiedrag}.
+Despite rapid advances in this area, there remains a critical gap in leveraging scene text (e.g., labels, signage) that inherently contains disambiguating information. 
+The proposed STARE addresses this limitation by proposing a novel multimodal framework that explicitly incorporates scene text, enabling improved object retrieval accuracy in real-world environments.
+
+\paragraph{Scene Text.}
+Research on images containing scene text encompasses a variety of tasks, including text recognition \cite{Zhao2023MultimodalIL, OTE}, text detection \cite{Liang_2024_CVPR, STEP, Zheng_2024_CVPR}, text retrieval \cite{Zeng2024FocusDA, Zheng_2024_CVPR, vista}, visual question answering~\cite{Biten2021LaTrLT, stvqa, Gao2020MultiModalGN}, and text synthesis \cite{Cui_2024_CVPR, Duan2024ODMAT, Santoso2023OnMS}.
+In particular, scene text retrieval methods often integrate OCR-extracted textual and positional information with visual features to improve alignment with query texts and achieve higher retrieval accuracy.
+Mishra et al.~\cite{ocrvqa} introduced the scene text retrieval task, proposing a two-stage pipeline that detects and classifies characters to compute the probability of images containing the query text. 
+Gomez et al.~\cite{GomezMaflaECCV2018single} proposed an end-to-end network that predicts text proposals and ranks images based on their similarity to the query text.
+ViSTA~\cite{vista} embeds OCR-extracted text and position using BERT~\cite{Devlin2019BERTPO} and linear projection, respectively, and fuses the text and position with visual features via a fusion token within a transformer for multimodal integration.
+In contrast to these approaches, STARE integrates the text and position into a narrative representation that captures its association with the corresponding objects and their attributes.
+Furthermore, STARE introduces an auxiliary similarity function that efficiently models the complex relationships between scene texts and the referenced objects.
+
+\paragraph{Benchmarks.}
+Several standard benchmarks have been proposed in the fields of multimodal retrieval and tasks involving scene text.
+Among the former, COCO \cite{Lin2014MicrosoftCC} and Flickr30K \cite{flickr30k} are originally image captioning benchmarks that have been widely used for multimodal retrieval tasks.
+REVERIE \cite{qi2020reverie} and GOAT-Bench~\cite{khanna2024goatbench} are designed for the object-goal navigation task, while LTRRIE~\cite{multirankit} focuses on multimodal retrieval by ranking images.
+Benchmarks for scene text span various vision-language tasks.
+For example, ST-VQA \cite{stvqa} is commonly used for scene text-based VQA, while TextCaps \cite{textcaps} and COCO-Text-Captioned \cite{stacmr} are suitable for scene text-aware image captioning.
+Visual Genome \cite{Krishna2017} includes images with scene texts and dense annotations, supporting vision-language grounding and reasoning tasks.
+Finally, RefText \cite{stan} is a benchmark for referring expression comprehension, provides image-object pairs and referring expressions, some of which leverage scene texts as contextual cues.
+Among the many existing benchmarks for multimodal retrieval, most are not suitable for our task because they lack scene text.
+The benchmarks that include scene texts are typically not designed for multimodal retrieval, are unsuited to robotic tasks, or include overly simple instructions.
+These limitations make them insufficient for evaluating real-world instruction-based retrieval tasks for robots, which require fine-grained reasoning over scene text and visual content.
+
+\paragraph{Differences from Existing Methods.}
+STARE differs from existing multimodal retrieval methods in two key aspects.
+First, while most prior methods focus on retrieval in indoor environments, STARE performs the task across a broad range of indoor and outdoor environments, making it more applicable to real-world scenarios.
+Second, STARE extracts and utilizes scene text from images, unlike existing methods that do not explicitly incorporate scene text.
+Next, STARE differs from existing methods that handle scene text or perform scene text-aware multimodal retrieval in how it processes scene text.
+In contrast to prior methods that use scene text as is, STARE integrates it into a narrative representation that captures its association with the corresponding objects and their attributes.
+Also, our method introduces an auxiliary similarity function that efficiently models the complex relationships between scene text and the referenced objects.

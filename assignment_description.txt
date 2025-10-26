@@ -1,0 +1,4 @@
+3-10本の論文を読み、読んだ各論文の内容の説明もしくは論文間の相対的な位置づけが分かるような論文の分類（サーベイマップ等）を行い、研究課題についてまとめること．(必要に応じて10本以上を取り上げても良い)
+レポートは，A4 2-4ページ（2カラム）でまとめ，PDFフォーマットでK-LMSに提出しなさい．
+Read 3-10 papers, summarize/classify them explaining the relative position among the papers (e.g., a survey map) and describe your research theme(s). You may include more than 10 papers.
+The report should be 2-4 A4 pages double column in PDF format.
